@@ -12,7 +12,7 @@ Support for [Dalet](https://github.com/txtdot/dalet) in JS (with types).
 
 ### DaletPack
 
-- [ ] typed tags
+- [ ] Types
 - [ ] Encode
 - [ ] Decode
 
