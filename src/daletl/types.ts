@@ -2,7 +2,6 @@ export type Vec<T> = T[];
 export type Text = string;
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
-export type TextOrNumber = { Text: string } | { Number: number };
 export type TableRows = { Default: Vec<Tag> } | { Primary: Vec<Tag> };
 export type Body = { Text: string } | { Tags: Vec<Tag> };
 
