@@ -2,13 +2,9 @@ export type Vec<T> = T[];
 export type Text = string;
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
-export type TextOrNull = { Text: string } | "Null";
-export type TextOrNumber = { Text: string } | number;
-
+export type TextOrNumber = { Text: string } | { Number: number };
 export type TableRows = { Default: Vec<Tag> } | { Primary: Vec<Tag> };
-
 export type Body = { Text: string } | { Tags: Vec<Tag> };
-export type BodyOrNull = Body | "Null";
 
 export type Tag =
   | { El: { body: Body } }
@@ -17,10 +13,10 @@ export type Tag =
   | { Ul: { body: Vec<Tag> } }
   | { Ol: { body: Vec<Tag> } }
   | { Row: { body: Vec<Tag> } }
-  | { Link: { body: BodyOrNull; dref: Text } }
-  | { NavLink: { body: BodyOrNull; dref: Text } }
-  | { Button: { body: BodyOrNull; dref: Text } }
-  | { NavButton: { body: BodyOrNull; dref: Text } }
+  | { Link: { body: Body | null; dref: Text } }
+  | { NavLink: { body: Body | null; dref: Text } }
+  | { Button: { body: Body | null; dref: Text } }
+  | { NavButton: { body: Body | null; dref: Text } }
   | { Img: { src: Text } }
   | { Table: { body: Vec<TableRows> } }
   | { B: { body: Text } }
@@ -34,13 +30,13 @@ export type Tag =
   | { Sub: { body: Text } }
   | { Disc: { body: Body } }
   | { Carousel: { body: Vec<Tag> } }
-  | { Code: { body: Text; language: TextOrNull } }
+  | { Code: { body: Text; language: Text | null } }
   | { Pre: { body: Text } }
   | "LineBreak"
   | "HorizontalBreak";
 
 export interface Page {
-  title: TextOrNull;
-  description: TextOrNull;
+  title: Text | null;
+  description: Text | null;
   body: Vec<Tag>;
 }
