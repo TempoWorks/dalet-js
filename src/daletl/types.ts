@@ -1,12 +1,15 @@
+export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
+  U[keyof U];
+
 export type Vec<T> = T[];
 export type Text = string;
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
-export type TableRows = { Default: Vec<Tag> } | { Primary: Vec<Tag> };
-export type Body = { Text: string } | { Tags: Vec<Tag> };
+export type TableRows = AtLeastOne<{ Default: Vec<Tag>; Primary: Vec<Tag> }>;
+export type Body = AtLeastOne<{ Text: string; Tags: Vec<Tag> }>;
 
 export type Tag =
-  | Partial<{
+  | AtLeastOne<{
       El: { body: Body };
       H: { body: Text; heading: HeadingLevel };
       P: { body: Body };
