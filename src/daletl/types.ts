@@ -4,6 +4,7 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export type Vec<T> = T[];
 export type Text = string;
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+export type ListStyle = "Disc" | "Decimal" | "None";
 
 export type TableRows = AtLeastOne<{ Default: Vec<Tag>; Primary: Vec<Tag> }>;
 export type Body = AtLeastOne<{ Text: string; Tags: Vec<Tag> }>;
@@ -13,8 +14,7 @@ export type Tag =
       El: { body: Body };
       H: { body: Text; heading: HeadingLevel };
       P: { body: Body };
-      Ul: { body: Vec<Tag> };
-      Ol: { body: Vec<Tag> };
+      List: { body: Vec<Tag>; style: ListStyle };
       Row: { body: Vec<Tag> };
       Link: { body: Body | null; dref: Text };
       NavLink: { body: Body | null; dref: Text };
