@@ -49,6 +49,8 @@ export type Tag =
       Superscript: { body: Text };
       /// Subscript text
       Subscript: { body: Text };
+      /// Mono text
+      Mono: { body: Text };
 
       /// Link to FootNote
       FootLink: { footnote: u64 };
@@ -57,12 +59,12 @@ export type Tag =
       /// Anchor for using in links (Link { dref: "#id" })
       Anchor: { id: Text };
 
-      /// Preformatted block of text.
-      Preformatted: { body: Text };
       /// BlockQuote
       BlockQuote: { body: Body };
       /// Block of code. With highlighting.
       Code: { body: Text; language: Option<Text> };
+      /// Inline block of code. With highlighting.
+      InlineCode: { body: Text; language: Option<Text> };
 
       /// Block with a lighter background and padding.
       Block: { body: Vec<Tag> };
@@ -79,6 +81,7 @@ export type Tag =
         align_x: Option<Align>;
         align_y: Option<Align>;
       };
+
       /// Block that can be opened. With optional title.
       Disclosure: { body: Body; title: Option<Text> };
       /// Carousel of blocks with buttons for switching between them.
@@ -87,7 +90,6 @@ export type Tag =
       /// Display variable from variables in page by index.
       Variable: { idx: u64 };
     }>
-  | "LineBreak"
   | "HorizontalBreak";
 
 export interface Page {
